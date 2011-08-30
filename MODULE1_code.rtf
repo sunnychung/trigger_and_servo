@@ -1,0 +1,110 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf350
+{\fonttbl\f0\fmodern\fcharset0 CourierNewPSMT;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red52\green52\blue52;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17940\viewh12280\viewkind0
+\deftab720
+\pard\pardeftab720\sl320\ql\qnatural
+
+\f0\fs24 \cf2 \cb3 /*\
+\'a0\'a0Button\
+\
+Turns on and off a light emitting diode(LED) connected to digital\'a0\'a0
+\f1 \uc0\u8232 
+\f0 pin 13, when pressing a pushbutton attached to pin 7.\
+The circuit:
+\f1 \uc0\u8232 
+\f0 * LED attached from pin 13 to ground
+\f1 \uc0\u8232 
+\f0 * pushbutton attached to pin 2 from +5V
+\f1 \uc0\u8232 
+\f0 * 10K resistor attached to pin 2 from ground\
+* Note: on most Arduinos there is already an LED on the board
+\f1 \uc0\u8232 
+\f0 attached to pin 13.\
+\
+// constants won\'92t change. They\'92re used here to
+\f1 \uc0\u8232 
+\f0 // set pin numbers:
+\f1 \uc0\u8232 
+\f0 const int buttonPin = 2;\'a0\'a0\'a0\'a0 // the number of the pushbutton pin
+\f1 \uc0\u8232 
+\f0 const int ledPin =\'a0\'a013;\'a0\'a0\'a0\'a0\'a0\'a0// the number of the LED pin\
+// variables will change:
+\f1 \uc0\u8232 
+\f0 int buttonState = 0;\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // variable for reading the pushbutton status\
+void setup() \{
+\f1 \uc0\u8232 
+\f0 \'a0\'a0// initialize the LED pin as an output:
+\f1 \uc0\u8232 
+\f0 \'a0\'a0pinMode(ledPin, OUTPUT);\'a0\'a0\'a0\'a0\'a0\'a0
+\f1 \uc0\u8232 
+\f0 \'a0\'a0// initialize the pushbutton pin as an input:
+\f1 \uc0\u8232 
+\f0 \'a0\'a0pinMode(buttonPin, INPUT);\'a0\'a0\'a0\'a0
+\f1 \uc0\u8232 
+\f0 \}\
+void loop()\{
+\f1 \uc0\u8232 
+\f0 \'a0\'a0// read the state of the pushbutton value:
+\f1 \uc0\u8232 
+\f0 \'a0\'a0buttonState = digitalRead(buttonPin);\
+\'a0\'a0// check if the pushbutton is pressed.
+\f1 \uc0\u8232 
+\f0 \'a0\'a0// if it is, the buttonState is HIGH:
+\f1 \uc0\u8232 
+\f0 \'a0\'a0if (buttonState == HIGH) \{\'a0\'a0\'a0\'a0
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\'a0\'a0// turn LED on:\'a0\'a0\'a0\'a0
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\'a0\'a0digitalWrite(ledPin, HIGH);\'a0\'a0
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\}
+\f1 \uc0\u8232 
+\f0 \'a0\'a0else \{
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\'a0\'a0// turn LED off:
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\'a0\'a0digitalWrite(ledPin, LOW);
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\}
+\f1 \uc0\u8232 
+\f0 \}\
+\
+#include <Servo.h>\
+Servo myservo;\'a0\'a0// create servo object to control a servo
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0// a maximum of eight servo objects can be created\
+int pos = 0;\'a0\'a0\'a0\'a0// variable to store the servo position\
+void setup()
+\f1 \uc0\u8232 
+\f0 \{
+\f1 \uc0\u8232 
+\f0 \'a0\'a0myservo.attach(9);\'a0\'a0// attaches the servo on pin 9 to the servo object
+\f1 \uc0\u8232 
+\f0 \}\
+void loop()
+\f1 \uc0\u8232 
+\f0 \{
+\f1 \uc0\u8232 
+\f0 \'a0\'a0for(pos = 0; pos < 180; pos += 1)\'a0\'a0// goes from 0 degrees to 180 degrees
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\{\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0// in steps of 1 degree
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\'a0\'a0myservo.write(pos);\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0// tell servo to go to position in variable 'pos'
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\'a0\'a0delay(15);\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // waits 15ms for the servo to reach the position
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\}
+\f1 \uc0\u8232 
+\f0 \'a0\'a0for(pos = 180; pos>=1; pos-=1)\'a0\'a0\'a0\'a0 // goes from 180 degrees to 0 degrees
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\{\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\'a0\'a0myservo.write(pos);\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0// tell servo to go to position in variable \'91pos\'92
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\'a0\'a0delay(15);\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // waits 15ms for the servo to reach the position
+\f1 \uc0\u8232 
+\f0 \'a0\'a0\}
+\f1 \uc0\u8232 
+\f0 \}\
+}
